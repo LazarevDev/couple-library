@@ -1,0 +1,167 @@
+.sectionContainer{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 95%;
+    margin-top: 80px;
+}
+
+.cover{
+    width: 420px;
+    overflow: hidden;
+    position: relative;
+}
+
+.cover img{
+    width: 100%;
+    top: 0;
+    border-radius: 10px;
+}
+
+.coverMask{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(#00000000, #121212 70%);
+}
+
+.back{
+    position: absolute;
+    left: 25px;
+    top: 25px;
+}
+
+.text{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 95%;
+}
+
+.text h2{
+    font-size: 26px;
+    width: 100%;
+}
+
+.text p{
+    font-size: 14px;
+    width: 100%;
+}
+
+.text span{
+    color: #999;
+    font-size: 12px;
+    margin-top: 5px;
+    width: 100%;
+}
+
+.btnMovie{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: #FF5C00;
+    padding: 12px 0;
+    border-radius: 10px;
+    color: #fff;
+    margin-top: 15px;
+}
+
+.btnMovieBefore{
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    margin-top: 10px;
+    width: 100%;
+}
+
+
+.btnMovieBefore{
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    margin-top: 10px;
+    width: 100%;
+}
+
+section .container{
+    width: calc(100% - 460px);
+}
+
+.content{
+
+}
+
+.content h2{
+    /* margin-top: 20px; */
+    font-size: 24px;
+}
+
+.content p{
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+@media(min-width: 320px) and (max-width: 680px){
+    .sectionContainer{
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 0;
+    }
+    
+    .cover{
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .cover img{
+        border-radius: 0;
+    }
+
+    .back{
+        position: absolute;
+        left: 25px;
+        top: 25px;
+    }
+
+    .text{
+        width: 95%;
+    }
+
+    .text h2{
+        font-size: 26px;
+    }
+
+    .text p{
+        font-size: 14px;
+    }
+
+    .hr{
+        width: 90px;
+        height: 1px;
+        background: #999;
+        margin-top: 25px;
+    }
+
+    .content h2{
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    .content p{
+        font-size: 14px;
+        margin: 10px 0 0 0;
+    }
+
+    
+    section .container{
+        width: 95%;
+    }
+}

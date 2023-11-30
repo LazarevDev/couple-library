@@ -1,8 +1,7 @@
 <?php 
 require_once('../require/db.php');
+require_once('../require/apiKey.php');
 
-// 98c041f7-28d2-4412-880a-fe2621e3b557
-// f5bd3a8d-6669-4038-8bad-54ad15b68b11
 
 $orders = ['NUM_VOTE', 'YEAR', 'RATING'];
 $dates = ['1998', '1999'];
@@ -15,7 +14,7 @@ for ($page=1; $page < 6; $page++) {
             $url = 'https://kinopoiskapiunofficial.tech/api/v2.2/films?order='.$order.'&type=FILM&ratingFrom=0&ratingTo=10&yearFrom='.$date.'&yearTo='.$date.'&page='.$page;
             $headers = array(
                 'accept: application/json',
-                'X-API-KEY: f5bd3a8d-6669-4038-8bad-54ad15b68b11'
+                'X-API-KEY: {$apiKey}'
             );
         
             $ch = curl_init();
