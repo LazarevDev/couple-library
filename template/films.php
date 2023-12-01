@@ -74,6 +74,6 @@ $titie = "Популярные фильмы";
         </div>
     </section>
 
-    <?=require_once('template/footer.php')?>
+    <?php require_once('template/footer.php'); ?>
 </body>
 </html>
