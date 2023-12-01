@@ -1,0 +1,40 @@
+.partnersContainer{
+    
+}
+
+.partnerBlock{
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    background: #181818;
+    color: #fff;
+    padding: 16px;
+}
+
+.partnerImg{
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: #121212;
+}
+
+.partnerText{
+    margin-left: 10px;
+}
+
+.partnerText h2{
+    font-size: 16px;
+}
+
+.partnerText a{
+    color: #fff;
+    font-size: 14px;
+}
+
+/* titleSection */
+
+.titleSection h2{
+    margin: 20px 0;
+    font-size: 24px;
+    color: #fff;
+}
