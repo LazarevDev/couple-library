@@ -1,0 +1,27 @@
+@media(min-width: 320px) and (max-width: 980px){
+
+    footer{
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        background: #000;
+        padding: 20px 0;
+    }
+    
+    .footerContent{
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+    }
+
+    .footerItem svg{
+        fill: #fff;
+    }
+
+    .footerItemActive svg{
+        fill: #FF5C00;
+    }
+
+}

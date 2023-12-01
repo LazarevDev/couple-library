@@ -67,5 +67,7 @@ $resultInfo = mysqli_fetch_array($queryInfo);
             </div>
         </div>
     </section>
+
+    <?=require_once('template/footer.php')?>
 </body>
 </html>
