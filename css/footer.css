@@ -10,7 +10,7 @@ footer{
 .footerContent{
     display: flex;
     justify-content: space-between;
-    width: 300px;
+    width: 260px;
     padding: 20px 40px;
     background: #000;
     margin-bottom: 10px;
@@ -26,7 +26,7 @@ footer{
 }
 
 
-
+/* 
 @media(min-width: 320px) and (max-width: 550px){
 
     footer{
@@ -54,4 +54,4 @@ footer{
         fill: #FF5C00;
     }
 
-}
+} */

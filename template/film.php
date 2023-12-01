@@ -28,7 +28,7 @@ $resultInfo = mysqli_fetch_array($queryInfo);
         <div class="sectionContainer">
             <div class="cover">
                 <div class="coverMask">
-                    <a href="../films" class="back">
+                    <a href="<?=$_SERVER['HTTP_REFERER'] ?>" class="back">
                         <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9.00001 17.75C8.80095 17.7509 8.6099 17.6716 8.47001 17.53L0.470011 9.52997C0.177558 9.23715 0.177558 8.76279 0.470011 8.46997L8.47001 0.469969C8.76552 0.19461 9.22602 0.202735 9.51163 0.488347C9.79725 0.773959 9.80537 1.23446 9.53001 1.52997L2.06001 8.99997L9.53001 16.47C9.82246 16.7628 9.82246 17.2372 9.53001 17.53C9.39013 17.6716 9.19908 17.7509 9.00001 17.75Z" fill="white"/>
                         </svg>
