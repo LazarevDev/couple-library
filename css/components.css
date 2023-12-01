@@ -1,7 +1,3 @@
-.partnersContainer{
-    
-}
-
 .partnerBlock{
     display: flex;
     align-items: center;
@@ -37,4 +33,141 @@
     margin: 20px 0;
     font-size: 24px;
     color: #fff;
+}
+
+/* form */
+
+.input{
+    width: calc(100% - 20px);
+    padding: 12px;
+    background: #181818;
+    border-radius: 5px;
+}
+
+.submit{
+    margin-top: 10px;
+    padding: 12px 24px;
+    background: #FF5C00;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* movies */
+
+.movies{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+.movieItem{
+    width: 15vw;
+    color: #fff;
+    margin-bottom: 20px ;
+}
+
+.moviePreview{
+    display: flex;
+    color: #fff;
+    position: relative;
+}
+
+.genreMask{
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(0deg, #121212, #00000000);
+    padding: 60px 0 10px 0 ;
+    width: 100%;
+    text-align: center;
+}
+
+.genreMask p{
+    font-size: 12px;
+}
+
+.rating{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: #0a0a0a40;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.moviePreview img{
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+    border-radius: 10px;    
+}
+
+.movieInfo{
+    width: 100%;
+    text-align: center;
+}
+
+.btnView{
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px 0;
+    background: #FF5C00;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.movieInfo h2{
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: unset;
+    margin-top: 5px;
+}
+
+.movieInfo p{
+    font-size: 12px;
+    color: #6C6C6C;
+    margin-top: 3px;
+}
+
+@media(min-width: 320px) and (max-width: 550px){
+    
+    .movieItem{
+        width: 46vw;
+    }
+
+    .moviePreview img{
+        height: 80vw;
+    }
+}
+
+@media(min-width: 550px) and (max-width: 1200px){
+    
+    .movieItem{
+        width: 28vw;
+    }
+
+    .moviePreview img{
+        height: 30vw;
+    }
 }

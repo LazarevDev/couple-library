@@ -92,6 +92,7 @@ section{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    padding-bottom: 80px;
 }
 
 .container{
