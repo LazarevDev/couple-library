@@ -10,7 +10,7 @@ function dd($param){
     var_dump($param);
 }
 
-global $staticPages;
+// global $staticPages;
 $staticPages = [
     '' => [['guest'], 'one_level'],
     'index' => [['guest'], 'one_level'],
@@ -44,16 +44,26 @@ if(file_exists('css/'.$paramOne.".css")){
 }
 
 function cookieCheck() {
-    $role = 'guest';
+    global $db;
+    $role = null;
 
-    if(!empty($_COOKIE['user']) && !empty($_COOKIE['password'])){
-        $role = 'guest';
-        $role = 'admin';
+    if(!empty($_COOKIE['login']) && !empty($_COOKIE['password'])){
+        $loginCookie = $_COOKIE['login']; 
+        $passwordCookie = $_COOKIE['password']; 
+
+        $cookieCheckQuery = mysqli_query($db, "SELECT * FROM `users` WHERE `login` = '$loginCookie' AND `password` = '$passwordCookie'"); 
+        $resultCookieCheckQuery = mysqli_fetch_array($cookieCheckQuery);
+
+        if($resultCookieCheckQuery['login']){
+            $role = 'user';
+        }else{
+            setcookie('login', '');
+            setcookie('password', '');
+            $role = 'guest';
+        }
     }else{
-        $role = 'auth';
+        $role = 'guest';
     }
-    // $role = 'guest';
-    $role = 'user';
 
     return $role;
 }

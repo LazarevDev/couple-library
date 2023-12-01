@@ -1,0 +1,89 @@
+.authentication{
+    display: flex;
+    justify-content: center;
+    margin: 30px 0 80px 0;
+}
+
+.authenticationContent{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 420px;
+}
+
+.authenticationTitle{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.authenticationLogo img{
+    width: 120px;
+}
+
+.authenticationText{
+    text-align: center;
+    margin: 10px 0 0 0;
+}
+
+.authenticationText h2{
+    color: #FF5C00;
+    font-size: 24px;
+}
+
+.authenticationText p{
+    color: #fff;
+    font-size: 14px;
+    font-weight: unset;
+    margin: 5px 0 0 0;
+}
+
+.authenticationForm{
+    text-align: center;
+    width: 380px;
+}
+
+.authenticationForm input{
+    width: calc(100% - 14px);
+    border-radius: 10px;
+    padding: 14px 7px;
+    margin: 15px 0 0 0;
+    font-size: 14px;
+}
+
+.select{
+    width: 100%;
+    border: 0px solid #ddd;
+    color: #fff;
+    border-radius: 10px;
+    padding: 14px 7px;
+    margin: 15px 0 0 0;
+    font-size: 14px;
+}
+
+.submit{
+    border: 0px solid #000;
+    width: 100% !important;
+}
+
+.footerFormBtn{
+    margin: 15px 0 0 0;
+}
+
+.footerFormBtn p{
+    color: #666;
+}
+
+.footerFormBtn p a{
+    color: #FF5C00;
+}
+
+@media(min-width: 320px) AND (max-width: 480px){
+    .authenticationContent{
+        width: 100%;
+    }
+    
+    .authenticationForm{
+        width: 100%;
+    }
+}
