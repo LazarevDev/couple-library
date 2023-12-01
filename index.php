@@ -12,10 +12,10 @@ function dd($param){
 
 global $staticPages;
 $staticPages = [
-    '' => [['auth'], 'one_level'],
-    'index' => [['auth'], 'one_level'],
-    'register' => [['auth'], 'one_level'], 
-    'login' => [['auth'], 'one_level'],
+    '' => [['guest'], 'one_level'],
+    'index' => [['guest'], 'one_level'],
+    'register' => [['guest'], 'one_level'], 
+    'login' => [['guest'], 'one_level'],
 
     'films' => [['user', 'admin'], 'one_level'],
     'film' => [['user', 'admin'], 'two_level', 'false'],
@@ -29,34 +29,38 @@ $staticPages = [
 $url = $_SERVER["REQUEST_URI"];
 $lineArray = explode("/", $url);
 
-$params = null;
+if(!empty($lineArray[1])) $paramOne = $lineArray['1'];
+if(!empty($lineArray['2'])) $paramTwo = $lineArray['2'];
 
+$cssAccess = [
+    '../css/normalize.css',
+    '../css/components.css',
+    '../css/header.css',
+    '../css/footer.css',
+];
 
-if(!empty($lineArray[1])){
-    $paramOne = $lineArray['1'];
-}
-
-if(!empty($lineArray['2'])){
-    $paramTwo = $lineArray['2'];
+if(file_exists('css/'.$paramOne.".css")){
+    $cssAccess[] = '../css/'.$paramOne.'.css';
 }
 
 function cookieCheck() {
-    $role = 'all';
+    $role = 'guest';
 
     if(!empty($_COOKIE['user']) && !empty($_COOKIE['password'])){
-        $role = 'user';
+        $role = 'guest';
         $role = 'admin';
     }else{
         $role = 'auth';
     }
+    // $role = 'guest';
     $role = 'user';
 
     return $role;
-
 }
 
 function slug($db, $paramOne = null, $paramTwo = null, $paramThree = null){
     global $staticPages;
+    global $cssAccess;
 
     if(!empty($paramOne)){
         if(array_key_exists($paramOne, $staticPages)){
@@ -73,12 +77,16 @@ function slug($db, $paramOne = null, $paramTwo = null, $paramThree = null){
                 
             } else {
                 switch (cookieCheck()) {
-                    case 'auth':
+                    case 'guest':
                         header('Location: ../login');
                         break;
                     
                     case 'user':
                         header('Location: ../profile');
+                        break;
+
+                    case 'admin':
+                        header('Location: ../films');
                         break;
                     
                     default:
@@ -93,28 +101,6 @@ function slug($db, $paramOne = null, $paramTwo = null, $paramThree = null){
         require_once('template/index.php');
     }
 }
-
-
-if(array_key_exists($paramOne, $staticPages)){
-    echo $paramOne;
-}
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/normalize.css">
-    
-    <?php if(file_exists('css/'.$paramOne.".css")): ?>
-        <link rel="stylesheet" href="../css/<?=$paramOne?>.css">
-    <? endif; ?>
-    
-    <link rel="stylesheet" href="../css/page.css">
-    <title>Document</title>
-</head>
-<body>
-    <?=slug($db, $paramOne, $paramTwo);?>
-</body>
-</html>
+<?=slug($db, $paramOne, $paramTwo);?>
