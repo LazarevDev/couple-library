@@ -1,6 +1,27 @@
 <?php 
-$titie = "Популярные фильмы";
+$title = "Популярные фильмы";
 
+// данные о пользователи 
+
+$loginCookie = $_COOKIE['login'];
+$queryUser = mysqli_query($db, "SELECT * FROM `users` WHERE `login` = '$loginCookie'");
+$resultUser = mysqli_fetch_array($queryUser);
+
+
+// Фильмы
+
+$perPage = 10;
+
+$query = mysqli_query($db, "SELECT COUNT(*) as `total` FROM `movies`");
+$totalRecords = mysqli_fetch_array($query)['total'];
+
+$totalPages = ceil($totalRecords / $perPage);
+$currentPage = isset($paramTwo) ? $paramTwo : 1;
+
+$offset = ($currentPage - 1) * $perPage;
+
+
+$where = "ORDER BY `year` DESC LIMIT {$offset}, {$perPage}";
 ?>
 
 <!DOCTYPE html>
@@ -13,12 +34,12 @@ $titie = "Популярные фильмы";
         <link rel="stylesheet" href="<?=$css?>">
     <?php endforeach; ?>
     
-    <title><?=$titie?></title>
+    <title><?=$title?></title>
 </head>
 <body>
     <header>
         <div class="container">
-            <div class="headerTitle"><h2>Привет, Сергей</h2></div>
+            <div class="headerTitle"><h2>Привет, <?=$resultUser['name']?></h2></div>
         </div>
     </header>
 
@@ -40,35 +61,19 @@ $titie = "Популярные фильмы";
             </div>
             
             <div class="movies">
+                <?php require_once('_movies.php'); ?>
+            </div>
+
+            <div class="pagination">
                 <?php 
-                    $query = mysqli_query($db, "SELECT * FROM `movies` ORDER BY `year` DESC LIMIT 20");
-                    while($row = mysqli_fetch_array($query)){ 
-                        $kinopoiskId = $row['kinopoiskId'];
-                        ?>
-                    <!-- <a href="https://flicksbar.fun/film/<?=$row['kinopoiskId']?>" class="movieItem"> -->
-                    <div class="movieItem">
-                        <a href="film/<?=$row['kinopoiskId']?>" class="moviePreview">
-                            <span class="rating"><?=$row['ratingKinopoisk']?></span>
-    
-                            <div class="genreMask"><p>
-                                <?php 
-                                $queryGenres = mysqli_query($db, "SELECT * FROM `genres` WHERE `kinopoiskId` = '$kinopoiskId'"); 
-                                while($rowGenre = mysqli_fetch_array($queryGenres)){
-                                    echo $rowGenre['genre'].", ";
-                                }
-                                ?></p>
-                            </div>
+                $pagesToShow = 5;
 
-                            <img src="<?=$row['posterUrlPreview'];?>" alt="">
-                        </a>
+                $startPage = max(1, $currentPage - floor($pagesToShow / 2));
+                $endPage = min($startPage + $pagesToShow - 1, $totalPages);
 
-                        <div class="movieInfo">
-                            <a href="" class="btnView">Будем смотреть</a>
-                            <h2><?=$row['nameRu']?></h2>
-                            <p><?=$row['year']?></p>
-                        </div>
-                    </div>
-                    <?php }
+                for ($page = $startPage; $page <= $endPage; $page++) {
+                    echo '<a href="../films/'.$page.'">'.$page.'</a>';
+                }
                 ?>
             </div>
         </div>

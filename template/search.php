@@ -6,6 +6,8 @@ if(isset($_POST['submit'])){
     $search = urlencode($search);
     header('Location: ../search/'.$search);
 }
+
+$where = "ORDER BY `year` DESC LIMIT 40";
 ?>
 
 <!DOCTYPE html>
@@ -47,68 +49,18 @@ if(isset($_POST['submit'])){
                 </h2>
             </div>
            
-            <?php if($paramTwo): $paramTwo = urldecode($paramTwo); ?>
+            <?php if($paramTwo): 
+                $paramTwo = urldecode($paramTwo); 
+                $where = "WHERE `nameRu` LIKE '%".$paramTwo."%' ORDER BY `year` DESC";
+                
+                ?>
 
                 <div class="movies">
-                    <?php $query = mysqli_query($db, "SELECT * FROM `movies` WHERE `nameRu` LIKE '%".$paramTwo."%'  ORDER BY `year` DESC LIMIT 20");
-                        while($row = mysqli_fetch_array($query)){ 
-                            $kinopoiskId = $row['kinopoiskId'];
-                            ?>
-                            <div class="movieItem">
-                                <a href="film/<?=$row['kinopoiskId']?>" class="moviePreview">
-                                    <span class="rating"><?=$row['ratingKinopoisk']?></span>
-            
-                                    <div class="genreMask"><p>
-                                        <?php 
-                                        $queryGenres = mysqli_query($db, "SELECT * FROM `genres` WHERE `kinopoiskId` = '$kinopoiskId'"); 
-                                        while($rowGenre = mysqli_fetch_array($queryGenres)){
-                                            echo $rowGenre['genre'].", ";
-                                        }
-                                        ?></p>
-                                    </div>
-
-                                    <img src="<?=$row['posterUrlPreview'];?>" alt="">
-                                </a>
-
-                                <div class="movieInfo">
-                                    <a href="" class="btnView">Будем смотреть</a>
-                                    <h2><?=$row['nameRu']?></h2>
-                                    <p><?=$row['year']?></p>
-                                </div>
-                            </div>
-                    <?php } ?>
+                    <?php require_once('_movies.php'); ?>
                 </div>
             <?php else: ?>
                 <div class="movies">
-                    <?php 
-                        $query = mysqli_query($db, "SELECT * FROM `movies` ORDER BY `year` DESC LIMIT 20");
-                        while($row = mysqli_fetch_array($query)){ 
-                            $kinopoiskId = $row['kinopoiskId'];
-                            ?>
-                        <!-- <a href="https://flicksbar.fun/film/<?=$row['kinopoiskId']?>" class="movieItem"> -->
-                        <div class="movieItem">
-                            <a href="film/<?=$row['kinopoiskId']?>" class="moviePreview">
-                                <span class="rating"><?=$row['ratingKinopoisk']?></span>
-        
-                                <div class="genreMask"><p>
-                                    <?php 
-                                    $queryGenres = mysqli_query($db, "SELECT * FROM `genres` WHERE `kinopoiskId` = '$kinopoiskId'"); 
-                                    while($rowGenre = mysqli_fetch_array($queryGenres)){
-                                        echo $rowGenre['genre'].", ";
-                                    }
-                                    ?></p>
-                                </div>
-
-                                <img src="<?=$row['posterUrlPreview'];?>" alt="">
-                            </a>
-
-                            <div class="movieInfo">
-                                <a href="" class="btnView">Будем смотреть</a>
-                                <h2><?=$row['nameRu']?></h2>
-                                <p><?=$row['year']?></p>
-                            </div>
-                        </div>
-                    <?php } ?>
+                    <?php require_once('_movies.php'); ?>
                 </div>
             <?php endif; ?>
         </div>
