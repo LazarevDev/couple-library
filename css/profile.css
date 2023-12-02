@@ -1,0 +1,293 @@
+.profile{
+    display: flex;
+    justify-content: center;
+    margin: 80px 0 80px 0;
+}
+
+.profileInformation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.profileScore{
+    text-align: center;
+    width: 120px;
+}
+
+.profileScore h3{
+    color: #fff;
+    font-size: 24px;
+}
+
+.profileScore p{
+    color: #999;
+    font-size: 14px;
+}
+
+.profilePhoto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 125px;
+    height: 125px;
+    border: 3px solid #181818;
+    overflow: hidden;
+    position: relative;
+}
+
+.formProfile input{
+    display: none;
+}
+
+.avaBtn{
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: none;
+    cursor: pointer;
+}
+
+.profilePhoto img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.profileName{
+    margin: 10px 0 0 0;
+    text-align: center;
+}
+
+.profileName h2{
+    color: #fff;
+    font-size: 20px;
+    width: 100%;
+}
+
+.profileName p{
+    color: #fff;
+    font-size: 14px;
+}
+
+.mobileEditProfile{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 0 0;
+    width: 100%;
+    color: #FF5C00;
+    font-size: 14px;
+}
+
+.profileMenu{
+    background: #181818;
+    padding: 5px;
+    border-radius: 15px;
+    margin: 15px 0 0 0;
+}
+
+.btnMenu{
+    padding: 14px 50px;
+    border-radius: 15px;
+    color: #666;
+    font-size: 14px;
+}
+
+.activeProfile{
+    background: #FF5C00;
+    transition: .4s;
+    color: #fff;
+}
+
+
+.profileContent{
+    margin: 30px 0 0 0;
+}
+
+
+.profilePhotoContent{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.photoUser{
+    width: 252px;
+    height: 252px;
+    margin: 5px;
+}
+
+.photoUser img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* фото еще нет */
+
+.profileEmptyContent{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.profileEmptyBlock{
+    margin: 25px 0 0 0;
+    text-align: center;
+    padding: 25px 50px;
+    background: #F2F2F2;
+    border-radius: 10px;
+}
+
+.profileEmptyBlock p{
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+}
+
+/* profileApplications */
+
+.profileApplications{
+    display: flex;
+    justify-content: center;
+}
+
+.profileApplicationContent{
+    width: 800px;
+}
+
+.profileApplicationBlock{
+    margin: 15px 0 0;
+}
+
+.profileApplicationBlock h3{
+    font-size: 24px;
+    color: #161616;
+}
+
+.profileApplicationBlock p{
+    font-size: 16px;
+    margin: 15px 0 0 0;
+    color: #666;
+}
+
+.profileApplicationBlock a{
+    color: #FF5C00;
+    font-size: 16px;
+}
+
+
+
+@media(min-width: 320px) and (max-width: 550px){
+
+    .profile{
+        margin: 80px 0;
+    }
+  
+    .profileScore{
+        width: 100px;
+    }
+    
+    .profileScore h3{
+        font-size: 18px;
+    }
+    
+    .profileScore p{
+        font-size: 12px;
+    }
+    
+    .profilePhoto{
+        width: 95px;
+        height: 95px;
+    }
+    
+    
+    .profileName h2{
+        font-size: 16px;
+    }
+    
+    .profileName p{
+        font-size: 12px;
+    }
+
+    .btnMenu{
+        padding: 12px 35px;
+    }
+    
+    .profilePhotoContent{
+        justify-content: center;
+    }
+    
+    .photoUser{
+        width: 29vw;
+        height: 29vw;
+        margin: 1vw;
+    }
+
+    .mobileEditProfile{
+        display: flex;
+    }    
+
+    /* profileApplications */
+
+    .profileApplicationContent{
+        width: 100%;
+    }
+
+    .profileApplicationBlock{
+        margin: 10px 0 0;
+    }
+
+    .profileApplicationBlock h3{
+        font-size: 20px;
+        color: #161616;
+    }
+
+    .profileApplicationBlock p{
+        font-size: 14px;
+        margin: 5px 0 0 0;
+        color: #666;
+    }
+
+    .profileApplicationBlock a{
+        font-size: 16px;
+    }
+
+
+
+}
+
+
+@media(min-width: 550px) and (max-width: 920px){
+
+    .profilePhotoContent{
+        justify-content: center;
+    }
+    
+    .photoUser{
+        width: 21vw;
+        height: 21vw;
+        margin: 1vw;
+    }
+}
+
+
+@media(min-width: 920px) and (max-width: 1320px){
+
+    .profilePhotoContent{
+        justify-content: center;
+    }
+    
+    .photoUser{
+        width: 18vw;
+        height: 18vw;
+        margin: 5px;
+    }
+}
