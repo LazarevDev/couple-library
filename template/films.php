@@ -72,7 +72,15 @@ $where = "ORDER BY `year` DESC LIMIT {$offset}, {$perPage}";
                 $endPage = min($startPage + $pagesToShow - 1, $totalPages);
 
                 for ($page = $startPage; $page <= $endPage; $page++) {
-                    echo '<a href="../films/'.$page.'">'.$page.'</a>';
+                    $pageClass = null;
+
+                    if(empty($paramTwo)){
+                        if($page == 1) $pageClass = "paginationActive";
+                    }
+
+                    if($page == $paramTwo) $pageClass = "paginationActive";
+                    
+                    echo '<a class="paginationItem '.$pageClass.'" href="../films/'.$page.'">'.$page.'</a>';
                 }
                 ?>
             </div>

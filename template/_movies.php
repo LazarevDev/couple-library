@@ -1,5 +1,5 @@
 <?php 
-    $query = mysqli_query($db, "SELECT * FROM `movies` {$where}");
+    $query = mysqli_query($db, "SELECT * FROM `movies` {$where} ");
     while($row = mysqli_fetch_array($query)){ 
         $kinopoiskId = $row['kinopoiskId'];
 ?>
