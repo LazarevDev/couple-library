@@ -85,14 +85,18 @@
 }
 
 .profileMenu{
+    display: flex;
+    justify-content: space-between;
     background: #181818;
     padding: 5px;
     border-radius: 15px;
     margin: 15px 0 0 0;
+    width: 100%;
 }
 
 .btnMenu{
-    padding: 14px 50px;
+    width: 49%;
+    padding: 14px 0;
     border-radius: 15px;
     color: #666;
     font-size: 14px;
@@ -183,12 +187,27 @@
     font-size: 16px;
 }
 
+.profileContent{
+    width: 400px;
+}
+
+/* partnersProfile */
+
+.partnersProfile{
+    width: 100%;
+    margin: 20px 0 0 0;
+}
+
 
 
 @media(min-width: 320px) and (max-width: 550px){
 
     .profile{
         margin: 80px 0;
+    }
+
+    .profileContent{
+        width: 100%;
     }
   
     .profileScore{
@@ -217,10 +236,6 @@
         font-size: 12px;
     }
 
-    .btnMenu{
-        padding: 12px 35px;
-    }
-    
     .profilePhotoContent{
         justify-content: center;
     }
