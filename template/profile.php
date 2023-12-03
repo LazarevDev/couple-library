@@ -1,6 +1,13 @@
 <?php 
 $title = "Профиль";
 
+$loginCookie = $_COOKIE['login'];
+
+$queryUserMy = mysqli_query($db, "SELECT * FROM `users` WHERE `login` = '$loginCookie'");
+$resultUserMy = mysqli_fetch_array($queryUserMy);
+
+
+
 // данные о пользователи 
 
 $loginCookie = $_COOKIE['login'];
@@ -16,9 +23,7 @@ if(!empty($paramTwo)){
     $queryUser = mysqli_query($db, "SELECT * FROM `users` WHERE `login` = '$loginCookie'");
     $resultUser = mysqli_fetch_array($queryUser);
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,58 +47,104 @@ if(!empty($paramTwo)){
     <section>
         <div class="container">
             <div class="center">
-                <div class="profileInformation">
-                    <div class="profileScore">
-                        <h3>13</h3>
-                        <p>Мои закладки</p>
+                <div class="profileContent">
+                    <div class="profileInformation">
+                        <div class="profileScore">
+                            <h3>13</h3>
+                            <p>Мои закладки</p>
+                        </div>
+
+                        <div class="profilePhoto">
+                            <?php if($resultUser['login'] == $loginCookie){ ?>
+                                <form method="POST" action="include/upload-ava.php" class="formProfile" enctype="multipart/form-data">
+                                    <input type="file" name="ava" id="fileAva" onchange="this.form.submit ()"> 
+                                    <label for="fileAva" class="avaBtn"></label>
+                                </form>
+                            <?php } ?>
+                            <img src="../img/<?php if($resultUser['ava'] == null){ echo 'elements/profile-ava.png'; }else{ echo 'ava-user/'.$resultQueryProfile['login'].'/'.$resultQueryProfile['ava']; } ?>" alt="">
+                        </div>
+
+                        <div class="profileScore">
+                            <h3>43</h3>
+                            <p>Общие закладки</p>
+                        </div>
                     </div>
 
-                    <div class="profilePhoto">
+                    <div class="profileName">
+                        <h2><?=$resultUser['name']." ".$resultUser['lastname']?></h2>
+                        <p>@<?=$resultUser['login']?></p>
+                    </div>
+
+                    <div class="btnContainer">
                         <?php if($resultUser['login'] == $loginCookie){ ?>
-                            <form method="POST" action="include/upload-ava.php" class="formProfile" enctype="multipart/form-data">
-                                <input type="file" name="ava" id="fileAva" onchange="this.form.submit ()"> 
-                                <label for="fileAva" class="avaBtn"></label>
-                            </form>
+                            <a class="btn" href="setting">Редактировать профиль</a>
+                        <?php }else{
+                                $myId = $resultUserMy['id'];
+                                $userId = $resultUser['id'];
+
+                                ?>
+                                <a class="btn <?php if($resultUserMy['partner_id'] == $userId){ echo "unsubscribe"; } ?>" id="btn" data-id="<?=$resultUser['id']?>" href="#">
+                                    <?php
+                                    if($resultUserMy['partner_id'] !== $userId){
+                                        echo "Подписаться";
+                                    }else{
+                                        echo "Отписаться";
+                                    }
+                                    ?>
+                                </a>
                         <?php } ?>
-                        <img src="../img/<?php if($resultUser['ava'] == null){ echo 'elements/profile-ava.png'; }else{ echo 'ava-user/'.$resultQueryProfile['login'].'/'.$resultQueryProfile['ava']; } ?>" alt="">
                     </div>
+                                        
+                    <script>
+                    document.getElementById("btn").addEventListener("click", function() {
+                        // Отправка AJAX-запроса на сервер
+                        var id = document.getElementById("btn").getAttribute("data-id");
+                        var xhr = new XMLHttpRequest();
+                    
+                        xhr.open("POST", "../template/test.php", true);
+                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === 4 && xhr.status === 200) {
+                                // Обработка успешного ответа от сервера
+                                var response = xhr.responseText;
+                                var button = document.getElementById("btn");
 
-                    <div class="profileScore">
-                        <h3>43</h3>
-                        <p>Общие закладки</p>
+                                console.log(response);
+
+                                if (response === "subscribe") {
+                                    button.textContent = "Отписаться";
+                                    button.classList.add("unsubscribe");
+                                    button.disabled = true;
+                                        
+                                }else if(response == "unsubscribe"){
+                                    button.textContent = "Подписаться";
+                                    button.classList.remove("unsubscribe");
+                                    button.disabled = false;
+                                }
+                            }
+                        };
+                        xhr.send("id=" + id);
+                    });
+                    </script>
+
+                    <div class="partnersContainer partnersProfile">
+                        <a href="#" class="partnerBlock">
+                            <div class="partnerImg"></div>
+
+                            <div class="partnerText">
+                                <h2>Имя Фамилия</h2>
+                                <p>Перейти в профиль</p>
+                            </div>
+                        </a>
+                    </div>
+                
+                    <div class="profileMenu">
+                        <button class="btnMenu btnOne">Мои закладки</button>
+                        <button class="btnMenu btnTwo">Общие закладки</button>
                     </div>
                 </div>
             </div>
 
-            <div class="profileName">
-                <h2><?=$resultUser['name']." ".$resultUser['lastname']?></h2>
-                <p>@<?=$resultUser['login']?></p>
-            </div>
-
-            <!-- <div class="partnersContainer">
-                <a href="#" class="partnerBlock">
-                    <div class="partnerImg"></div>
-
-                    <div class="partnerText">
-                        <h2>Имя Фамилия</h2>
-                        <p>Перейти в профиль</p>
-                    </div>
-                </a>
-            </div> -->
-
-            <div class="center">
-
-                <?php if($resultUser['login'] == $loginCookie): ?>
-                    <a class="mobileEditProfile" href="include/edit.php">Редактировать профиль</a>
-                <? endif; ?>
-            </div>
-            
-            <div class="center">
-                <div class="profileMenu">
-                    <button class="btnMenu btnOne">Мои закладки</button>
-                    <button class="btnMenu btnTwo">Общие закладки</button>
-                </div>
-            </div>
 
             <div class="profileContent">
                 <div class="oneContent">
