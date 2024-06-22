@@ -24,6 +24,9 @@ $staticPages = [
     'notifications' => [['user', 'admin'], 'one_level'],
     'profile' => [['user', 'admin'], 'two_level'],
     'setting' => [['user', 'admin'], 'one_level'],
+    'logout' => [['user', 'admin'], 'one_level'],
+
+    'test' => [['user', 'admin']],
 ];
 
 $url = $_SERVER["REQUEST_URI"];
@@ -71,6 +74,14 @@ function cookieCheck() {
 function slug($db, $paramOne = null, $paramTwo = null, $paramThree = null){
     global $staticPages;
     global $cssAccess;
+
+    if(cookieCheck() == 'user'){
+        $loginCookie = $_COOKIE['login']; 
+        $passwordCookie = $_COOKIE['password']; 
+    
+        $query = mysqli_query($db, "SELECT * FROM `users` WHERE `login` = '$loginCookie' AND `password` = '$passwordCookie'"); 
+        $result = mysqli_fetch_array($query);
+    }
 
     if(!empty($paramOne)){
         if(array_key_exists($paramOne, $staticPages)){

@@ -10,7 +10,7 @@ $resultUser = mysqli_fetch_array($queryUser);
 
 // Фильмы
 
-$perPage = 10;
+$perPage = 36;
 
 $query = mysqli_query($db, "SELECT COUNT(*) as `total` FROM `movies`");
 $totalRecords = mysqli_fetch_array($query)['total'];

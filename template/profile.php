@@ -126,22 +126,16 @@ if(!empty($paramTwo)){
                         xhr.send("id=" + id);
                     });
                     </script>
-
+                    <?php if($resultUser['login'] == $loginCookie){ ?>
                     <div class="partnersContainer partnersProfile">
-                        <a href="#" class="partnerBlock">
-                            <div class="partnerImg"></div>
-
-                            <div class="partnerText">
-                                <h2>Имя Фамилия</h2>
-                                <p>Перейти в профиль</p>
-                            </div>
-                        </a>
+                        <?php require_once('_partner.php'); ?>
                     </div>
                 
                     <div class="profileMenu">
                         <button class="btnMenu btnOne">Мои закладки</button>
                         <button class="btnMenu btnTwo">Общие закладки</button>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
 

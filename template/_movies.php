@@ -2,6 +2,12 @@
     $query = mysqli_query($db, "SELECT * FROM `movies` {$where} ");
     while($row = mysqli_fetch_array($query)){ 
         $kinopoiskId = $row['kinopoiskId'];
+        $movie_id = $row['id'];
+        $user_id = $result['id']; 
+
+        $queryFavourite = mysqli_query($db, "SELECT * FROM `favourites` 
+        WHERE `movie_id` = '$movie_id' AND `user_id` = '$user_id'");
+        $resultFavourite= mysqli_fetch_array($queryFavourite);
 ?>
     <div class="movieItem">
         <a href="film/<?=$row['kinopoiskId']?>" class="moviePreview">
@@ -19,7 +25,13 @@
             <img src="<?=$row['posterUrlPreview'];?>" alt="">
         </a>
         <div class="movieInfo">
-            <a href="#" data-id="<?=$row['id']?>" class="btnView">Будем смотреть</a>
+            <a href="#" data-id="<?=$row['id']?>" class="btnView">
+                <?php if(empty($resultFavourite['movie_id'])): ?>
+                    Будем смотреть
+                <?php else: ?>
+                    В избранном
+                <?php endif; ?>
+            </a>
             <h2><?=$row['nameRu']?></h2>
             <p><?=$row['year']?></p>
         </div>
